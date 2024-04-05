@@ -1,6 +1,7 @@
 package models;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class MouthpiecesTest {
@@ -15,7 +16,7 @@ public class MouthpiecesTest {
         testMouthpiece.setModel(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getModel());
+        Assertions.assertEquals(expected, testMouthpiece.getModel());
     }
 
     @Test
@@ -28,7 +29,7 @@ public class MouthpiecesTest {
         testMouthpiece.setId(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getId());
+        Assertions.assertEquals(expected, testMouthpiece.getId());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class MouthpiecesTest {
         testMouthpiece.setType(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getType());
+        Assertions.assertEquals(expected, testMouthpiece.getType());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class MouthpiecesTest {
         testMouthpiece.setMaterial(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getMaterial());
+        Assertions.assertEquals(expected, testMouthpiece.getMaterial());
     }
 
     @Test
@@ -67,7 +68,7 @@ public class MouthpiecesTest {
         testMouthpiece.setManufacturer(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getManufacturer());
+        Assertions.assertEquals(expected, testMouthpiece.getManufacturer());
     }
 
     @Test
@@ -80,7 +81,7 @@ public class MouthpiecesTest {
         testMouthpiece.setQuantity(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getQuantity());
+        Assertions.assertEquals(expected, testMouthpiece.getQuantity());
     }
 
     @Test
@@ -93,6 +94,30 @@ public class MouthpiecesTest {
         testMouthpiece.setPrice(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testMouthpiece.getPrice(), .0001);
+        Assertions.assertEquals(expected, testMouthpiece.getPrice(), .0001);
+    }
+
+    @Test
+    public void constructorTest() {
+        //given (1)
+        int id = 37204838;
+        String manufacturer = "Selmer";
+        String model = "Concept";
+        String type = "Soprano";
+        String material = "Rubber";
+        int quantity = 75;
+        double price = 158.84;
+
+        //when (2)
+        Mouthpieces testMouthpiece = new Mouthpieces(id, manufacturer, model, type, material, quantity, price);
+
+        //then (3)
+        Assertions.assertEquals(id, testMouthpiece.getId());
+        Assertions.assertEquals(manufacturer, testMouthpiece.getManufacturer());
+        Assertions.assertEquals(model, testMouthpiece.getModel());
+        Assertions.assertEquals(type, testMouthpiece.getType());
+        Assertions.assertEquals(material, testMouthpiece.getMaterial());
+        Assertions.assertEquals(quantity, testMouthpiece.getQuantity());
+        Assertions.assertEquals(price, testMouthpiece.getPrice());
     }
 }

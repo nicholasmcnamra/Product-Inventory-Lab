@@ -10,6 +10,20 @@ public class Mouthpieces {
     private int quantity;
     private double price;
 
+    public Mouthpieces(int id, String manufacturer, String model, String type, String material, int quantity, double price) {
+        this.id = id;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.type = type;
+        this.material = material;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public Mouthpieces() {
+
+    }
+
     public void setModel(String model) {
         this.model = model;
     }

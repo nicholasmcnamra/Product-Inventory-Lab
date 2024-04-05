@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.Assert;
 
@@ -15,7 +16,7 @@ public class SaxophonesTest {
         testSaxophone.setModel(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testSaxophone.getModel());
+        Assertions.assertEquals(expected, testSaxophone.getModel());
     }
 
     @Test
@@ -28,7 +29,7 @@ public class SaxophonesTest {
         testSaxophone.setId(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testSaxophone.getId());
+        Assertions.assertEquals(expected, testSaxophone.getId());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class SaxophonesTest {
         testSaxophone.setType(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testSaxophone.getType());
+        Assertions.assertEquals(expected, testSaxophone.getType());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class SaxophonesTest {
         testSaxophone.setManufacturer(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testSaxophone.getManufacturer());
+        Assertions.assertEquals(expected, testSaxophone.getManufacturer());
     }
 
     @Test
@@ -67,7 +68,7 @@ public class SaxophonesTest {
         testSaxophone.setQuantity(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testSaxophone.getQuantity());
+        Assertions.assertEquals(expected, testSaxophone.getQuantity());
     }
 
     @Test
@@ -80,8 +81,29 @@ public class SaxophonesTest {
         testSaxophone.setPrice(expected);
 
         //then (3)
-        Assert.assertEquals(expected, testSaxophone.getPrice(), .0001);
+        Assertions.assertEquals(expected, testSaxophone.getPrice(), .0001);
     }
 
+    @Test
+    public void constructorTest() {
+        //given (1)
+        int id = 27190345;
+        String manufacturer = "Yanagisawa";
+        String model = "AWO10";
+        String type = "Alto";
+        int quantity = 8;
+        double price = 5839.0;
+
+        //when (2)
+        Saxophones testSaxophone = new Saxophones(id, manufacturer, model, type, quantity, price);
+
+        //then (3)
+        Assertions.assertEquals(id, testSaxophone.getId());
+        Assertions.assertEquals(manufacturer, testSaxophone.getManufacturer());
+        Assertions.assertEquals(model, testSaxophone.getModel());
+        Assertions.assertEquals(type, testSaxophone.getType());
+        Assertions.assertEquals(quantity, testSaxophone.getQuantity());
+        Assertions.assertEquals(price, testSaxophone.getPrice());
+    }
 }
 

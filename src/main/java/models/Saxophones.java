@@ -8,6 +8,19 @@ public class Saxophones {
     private int quantity;
     private double price;
 
+    public Saxophones(int id, String manufacturer, String model, String type, int quantity, double price) {
+        this.id = id;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.type = type;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public Saxophones() {
+
+    }
+
     public void setModel(String model) {
         this.model = model;
     }
