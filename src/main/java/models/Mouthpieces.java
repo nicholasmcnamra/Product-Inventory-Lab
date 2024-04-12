@@ -79,4 +79,9 @@ public class Mouthpieces {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Id: %d\nManufacturer: %s\nModel: %s\nType: %s\nMaterial: %s\nQuantity: %d\nPrice: %.2f\n", id, manufacturer, model, type, material, quantity, price);
+    }
 }

@@ -24,7 +24,7 @@ public class SaxophoneServices {
 //        return null;
         // saxophone ids should not be duplicated
         // saxophone -> saxophone.getId() == i -- for each saxophone compare saxophone.getId() to i.
-        // if true, return the first instance, otherwise return null
+        // if true, return the first instance, other wise return null
         return inventory.stream().filter(saxophone -> saxophone.getId() == i).findFirst().orElse(null);
     }
 

@@ -68,4 +68,9 @@ public class Saxophones {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Id: %d\nManufacturer: %s\nModel: %s\nType: %s\nQuantity: %d\nPrice: %.2f\n", id, manufacturer, model, type, quantity, price);
+    }
 }
