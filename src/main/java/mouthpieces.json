@@ -1,0 +1,17 @@
+[ {
+  "id" : 1,
+  "manufacturer" : "Selmer",
+  "type" : "Alto",
+  "material" : "Rubber",
+  "model" : "Concept",
+  "quantity" : 1,
+  "price" : 250.0
+}, {
+  "id" : 2,
+  "manufacturer" : "Selmer",
+  "type" : "Soprano",
+  "material" : "Rubber",
+  "model" : "Claude",
+  "quantity" : 1,
+  "price" : 300.0
+} ]

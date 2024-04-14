@@ -7,11 +7,8 @@ import services.SaxophoneServices;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-
-import static jdk.nashorn.internal.objects.Global.println;
 
 public class Console {
 private final Scanner input;
@@ -54,6 +51,10 @@ public static String userInput;
         boolean runProgram = true;
         saxophoneServices.loadData();
         mouthpieceServices.loadData();
+        saxophoneServices.readJSON();
+        mouthpieceServices.readJSON();
+        SaxophoneServices.loadNextId();
+        MouthpieceServices.loadNextId();
         while (runProgram) {
             switch (userInput) {
                 case "1":
@@ -68,6 +69,8 @@ public static String userInput;
                         double price = Double.parseDouble(console.getUserInput("Enter price:\n"));
                         saxophoneServices.create(manufacturer, model, type, quantity, price);
                         saxophoneServices.saveInventory();
+                        saxophoneServices.writeToJSON();
+                        SaxophoneServices.writeNextId();
                     } else if (userInput.equals("2")) {
                         //manufacturer, model, type, material, quantity, price
                         String manufacturer = console.getUserInput("Enter manufacturer:\n");
@@ -78,6 +81,8 @@ public static String userInput;
                         double price = Double.parseDouble(console.getUserInput("Enter price:\n"));
                         mouthpieceServices.create(manufacturer, model, type, material, quantity, price);
                         mouthpieceServices.saveInventory();
+                        mouthpieceServices.writeToJSON();
+                        MouthpieceServices.writeNextId();
                     }
                     userInput = console.getUserInput("Would you like to add another?\n[Y/N]\n");
                     if (userInput.equals("Y")) {
@@ -109,10 +114,14 @@ public static String userInput;
                         int saxophoneId = Integer.parseInt(console.getUserInput("Enter saxophone id: "));
                         Saxophones saxophoneToUpdate = saxophoneServices.find(saxophoneId);
                         updateSaxophone(saxophoneToUpdate);
+                        saxophoneServices.saveInventory();
+                        saxophoneServices.writeToJSON();
                     } else if (userInput.equals("2")) {
                         int mouthpieceId = Integer.parseInt(console.getUserInput("Enter mouthpiece id: "));
                         Mouthpieces mouthpieceToUpdate = mouthpieceServices.find(mouthpieceId);
                         updateMouthpiece(mouthpieceToUpdate);
+                        mouthpieceServices.saveInventory();
+                        mouthpieceServices.writeToJSON();
                     }
                     userInput = console.getUserInput("Would you like to update another?\n[Y/N]\n");
                     if (userInput.equals("Y")) {
@@ -128,9 +137,14 @@ public static String userInput;
                         int saxophoneId = Integer.parseInt(console.getUserInput("Enter saxophone id: "));
                         saxophoneServices.delete(saxophoneId);
                         saxophoneServices.saveInventory();
+                        saxophoneServices.writeToJSON();
+                        SaxophoneServices.writeNextId();
                     } else if (userInput.equals("2")) {
                         int mouthpieceId = Integer.parseInt(console.getUserInput("Enter mouthpiece id: "));
                         mouthpieceServices.delete(mouthpieceId);
+                        mouthpieceServices.saveInventory();
+                        mouthpieceServices.writeToJSON();
+                        MouthpieceServices.writeNextId();
                     }
                     userInput = console.getUserInput("Would you like to delete another?\n[Y/N]\n");
                     if (userInput.equals("Y")) {

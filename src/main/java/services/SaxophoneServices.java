@@ -1,4 +1,8 @@
 package services;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import models.Saxophones;
 
 import java.io.*;
@@ -6,14 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import services.CSVUtils;
-
 public class SaxophoneServices {
-    int nextId;
+   private static int nextId;
     ArrayList<Saxophones> inventory = new ArrayList<>();
     String csvFile = "/Users/nicholas/Dev/toDoLabs/Product-Inventory-Lab/src/main/java/saxophoneInventory.csv";
     String line = "";
     String splitBy = ",";
+    static String nextIds = "/Users/nicholas/Dev/toDoLabs/Product-Inventory-Lab/src/main/java/saxophoneNextIds.txt";
 
 
     public Saxophones create(String manufacturer, String model, String type, int quantity, double price) {
@@ -99,5 +102,29 @@ public class SaxophoneServices {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void writeToJSON() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File("/Users/nicholas/Dev/toDoLabs/Product-Inventory-Lab/src/main/java/saxophones.json"), inventory);
+    }
+
+    public void readJSON() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        this.inventory = mapper.readValue(new File("/Users/nicholas/Dev/toDoLabs/Product-Inventory-Lab/src/main/java/saxophones.json"), new TypeReference<ArrayList<Saxophones>>() {
+        });
+    }
+
+    public static void loadNextId() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(nextIds));
+        nextId = Integer.valueOf(reader.readLine());
+        reader.close();
+    }
+
+    public static void writeNextId() throws IOException {
+        FileWriter writer = new FileWriter(nextIds);
+        writer.write(String.valueOf(nextId));
+        writer.close();
     }
 }
