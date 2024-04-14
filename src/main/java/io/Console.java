@@ -5,6 +5,7 @@ import models.Saxophones;
 import services.MouthpieceServices;
 import services.SaxophoneServices;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -49,8 +50,9 @@ public static String userInput;
         return input.nextLine();
     }
 
-    public void run() {
+    public void run() throws IOException {
         boolean runProgram = true;
+        saxophoneServices.loadData();
         while (runProgram) {
             switch (userInput) {
                 case "1":
@@ -64,6 +66,7 @@ public static String userInput;
                         int quantity = Integer.parseInt(console.getUserInput("Enter quantity:\n"));
                         double price = Double.parseDouble(console.getUserInput("Enter price:\n"));
                         saxophoneServices.create(manufacturer, model, type, quantity, price);
+                        saxophoneServices.saveInventory();
                     } else if (userInput.equals("2")) {
                         //manufacturer, model, type, material, quantity, price
                         String manufacturer = console.getUserInput("Enter manufacturer:\n");

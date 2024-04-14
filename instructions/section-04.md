@@ -56,7 +56,7 @@ The data in the Sneaker CSV will be stored in this format:
 
 Notice the integer on the first line of the data above. This integer will represent the ```nextId``` static value that is stored in the service class.
 
-To begin we will create a 'CSVUtils' class to help with this functionality.
+To begin we will create a 'services.CSVUtils' class to help with this functionality.
 
 
 **SneakerService.java**
@@ -64,7 +64,7 @@ To begin we will create a 'CSVUtils' class to help with this functionality.
 ```
 package utils;
 
-public class CSVUtils {
+public class services.CSVUtils {
     private static final char DEFAULT_SEPARATOR = ',';  // (1)
 	
 	// (2)
@@ -99,7 +99,7 @@ Now we have a utility class to help with saving objects to a CSV file whenever w
 String csvFile = "/Users/batman/Desktop/Sneaker.csv";
 FileWriter writer = new FileWriter(csvFile); //(1)
 
-CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
+services.CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));  // (2)
 
 for (Sneaker s : inventory) {
     List<String> list = new ArrayList<>(); // (3)
@@ -110,7 +110,7 @@ for (Sneaker s : inventory) {
     list.add(String.valueOf(s.getQty()));
     list.add(String.valueOf(s.getPrice()));
 
-    CSVUtils.writeLine(writer, list);  // (4)
+    services.CSVUtils.writeLine(writer, list);  // (4)
 }
 
 // (5)
@@ -120,7 +120,7 @@ writer.close();
 1. Create a FileWriter object and pass the location of the file to write to
 2. First we save the nextId value so it can be read back in we loading the data
 3. Create an ArrayList of string representations of the object data
-4. Use the CSVUtils.writeLine to save the data to file
+4. Use the services.CSVUtils.writeLine to save the data to file
 5. Flush and close connection to the file
 
 ## Part 3 - Reading from File

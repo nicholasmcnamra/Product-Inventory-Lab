@@ -4,6 +4,7 @@ import models.Saxophones;
 import services.MouthpieceServices;
 import services.SaxophoneServices;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -15,11 +16,9 @@ public class App {
 
 
 
-    public static void main(String[] args) {
-        App app = new App();
+    public static void main(String[] args) throws IOException {
         console.menu();
         console.userInput = console.getUserInput("\nChoose from menu");
         console.run();
-
     }
 }
