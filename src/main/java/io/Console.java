@@ -53,6 +53,7 @@ public static String userInput;
     public void run() throws IOException {
         boolean runProgram = true;
         saxophoneServices.loadData();
+        mouthpieceServices.loadData();
         while (runProgram) {
             switch (userInput) {
                 case "1":
@@ -76,6 +77,7 @@ public static String userInput;
                         int quantity = Integer.parseInt(console.getUserInput("Enter quantity:\n"));
                         double price = Double.parseDouble(console.getUserInput("Enter price:\n"));
                         mouthpieceServices.create(manufacturer, model, type, material, quantity, price);
+                        mouthpieceServices.saveInventory();
                     }
                     userInput = console.getUserInput("Would you like to add another?\n[Y/N]\n");
                     if (userInput.equals("Y")) {
@@ -125,6 +127,7 @@ public static String userInput;
                     if (userInput.equals("1")) {
                         int saxophoneId = Integer.parseInt(console.getUserInput("Enter saxophone id: "));
                         saxophoneServices.delete(saxophoneId);
+                        saxophoneServices.saveInventory();
                     } else if (userInput.equals("2")) {
                         int mouthpieceId = Integer.parseInt(console.getUserInput("Enter mouthpiece id: "));
                         mouthpieceServices.delete(mouthpieceId);
@@ -137,7 +140,7 @@ public static String userInput;
                         userInput = console.getUserInput("\nChoose from menu");
                     }
                     break;
-                case "5":
+                case "6":
                     System.out.println("Catch ya around");
                     runProgram = false;
             }

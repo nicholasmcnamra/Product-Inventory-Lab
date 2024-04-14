@@ -12,17 +12,9 @@ public class SaxophoneServices {
     int nextId;
     ArrayList<Saxophones> inventory = new ArrayList<>();
     String csvFile = "/Users/nicholas/Dev/toDoLabs/Product-Inventory-Lab/src/main/java/saxophoneInventory.csv";
-    FileWriter writer;
     String line = "";
     String splitBy = ",";
 
-    {
-        try {
-            writer = new FileWriter(csvFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public Saxophones create(String manufacturer, String model, String type, int quantity, double price) {
         nextId++;
@@ -65,6 +57,7 @@ public class SaxophoneServices {
     }
 
     public void saveInventory() throws IOException {
+        FileWriter writer = new FileWriter(csvFile);
         CSVUtils.writeLine(writer, new ArrayList<String>(Arrays.asList(String.valueOf(nextId))));
 
         for (Saxophones s : inventory) {
@@ -84,8 +77,12 @@ public class SaxophoneServices {
 
     public void loadData() throws FileNotFoundException {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            nextId = Integer.parseInt(br.readLine());
+            try {
+                nextId = Integer.parseInt(br.readLine());
+            }
+            catch (NumberFormatException e) {
 
+            }
             while ((line = br.readLine()) != null) {
                 //split line with comma
                 String [] saxophoneLoad = line.split(splitBy);
